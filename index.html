@@ -495,102 +495,128 @@
             box-shadow: 0 8px 32px rgba(108,140,255,0.5);
         }
 
-        /* ── PRINT / PDF STYLES ── */
+        /* ── PRINT CV (hidden on screen) ── */
+        #print-cv { display: none; }
+
         @media print {
-            @page {
-                size: A4;
-                margin: 14mm 12mm;
-            }
+            @page { size: A4; margin: 18mm 20mm; }
 
             * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
-            body {
-                background: #fff !important;
-                color: #111 !important;
-            }
+            body { background: #fff !important; }
             body::before, body::after { display: none; }
 
-            .pdf-btn { display: none; }
-            footer { display: none; }
+            .page, footer, .pdf-btn { display: none !important; }
 
-            .page {
-                padding: 0;
-                max-width: 100%;
+            #print-cv {
+                display: block;
+                font-family: 'Times New Roman', Times, serif;
+                font-size: 11pt;
+                color: #000;
+                line-height: 1.5;
             }
 
-            .grid { gap: 8px; }
+            #print-cv .cv-header {
+                text-align: center;
+                border-bottom: 2px solid #000;
+                padding-bottom: 10pt;
+                margin-bottom: 12pt;
+            }
 
-            .card {
-                background: #f8f8f8 !important;
-                border: 1px solid #ddd !important;
-                border-radius: 10px !important;
-                box-shadow: none !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
+            #print-cv .cv-header h1 {
+                font-size: 18pt;
+                font-weight: bold;
+                letter-spacing: 1px;
+                margin-bottom: 4pt;
+            }
+
+            #print-cv .cv-header .cv-contact {
+                font-size: 9.5pt;
+                color: #222;
+            }
+
+            #print-cv .cv-header .cv-contact span {
+                margin: 0 6pt;
+            }
+
+            #print-cv .cv-section {
+                margin-bottom: 12pt;
                 break-inside: avoid;
             }
 
-            .card::before, .card::after { display: none; }
-
-            .hero-card {
-                background: #f0f3ff !important;
+            #print-cv .cv-section-title {
+                font-size: 11pt;
+                font-weight: bold;
+                text-transform: uppercase;
+                letter-spacing: 1.5px;
+                border-bottom: 1px solid #000;
+                padding-bottom: 2pt;
+                margin-bottom: 7pt;
             }
 
-            .name {
-                background: none !important;
-                -webkit-text-fill-color: #111 !important;
-                color: #111 !important;
+            #print-cv .cv-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 1pt;
             }
 
-            .role { color: #555 !important; }
-            .role span { color: #4060cc !important; }
-
-            .label { color: #888 !important; }
-            .exp-title, .edu-uni, .project-name, .lang-name { color: #111 !important; }
-            .exp-company { color: #4060cc !important; }
-            .exp-date, .edu-date, .exp-item ul li, .edu-degree,
-            .project-desc, .objective-text, .stat-label { color: #444 !important; }
-
-            .chip {
-                border-color: #ccc !important;
-                color: #444 !important;
-                background: #f0f0f0 !important;
+            #print-cv .cv-row-title {
+                font-weight: bold;
+                font-size: 10.5pt;
             }
 
-            .skill-tag {
-                border-color: #ccc !important;
-                color: #333 !important;
-                background: #f0f0f0 !important;
+            #print-cv .cv-row-date {
+                font-size: 9.5pt;
+                white-space: nowrap;
             }
 
-            .skill-name { color: #888 !important; }
-
-            .int-tag {
-                border-color: #ccc !important;
-                color: #444 !important;
-                background: #f0f0f0 !important;
+            #print-cv .cv-row-sub {
+                font-size: 10pt;
+                font-style: italic;
+                margin-bottom: 3pt;
+                color: #222;
             }
 
-            .stat-number {
-                background: none !important;
-                -webkit-text-fill-color: #111 !important;
-                color: #111 !important;
+            #print-cv .cv-bullets {
+                margin: 3pt 0 8pt 14pt;
+                padding: 0;
+                list-style: disc;
             }
 
-            .lang-level { color: #777 !important; }
-            .lang-item { border-bottom-color: #ddd !important; }
-
-            .project-link { color: #4060cc !important; border-bottom-color: #4060cc !important; }
-            .project-stack { color: #7060cc !important; }
-
-            .badge {
-                background: rgba(0,150,80,0.08) !important;
-                border-color: rgba(0,150,80,0.2) !important;
-                color: #008040 !important;
+            #print-cv .cv-bullets li {
+                font-size: 10pt;
+                margin-bottom: 2pt;
             }
-            .badge-dot { background: #008040 !important; animation: none !important; }
 
-            hr.divider { border-top-color: #ddd !important; }
+            #print-cv .cv-about {
+                font-size: 10pt;
+                text-align: justify;
+            }
+
+            #print-cv .cv-skills-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 4pt 20pt;
+            }
+
+            #print-cv .cv-skill-row {
+                font-size: 10pt;
+            }
+
+            #print-cv .cv-skill-row b {
+                font-weight: bold;
+            }
+
+            #print-cv .cv-lang-row {
+                display: flex;
+                justify-content: space-between;
+                font-size: 10pt;
+                border-bottom: 0.5px solid #ccc;
+                padding: 3pt 0;
+            }
+
+            #print-cv .cv-lang-row:last-child { border-bottom: none; }
         }
     </style>
 </head>
@@ -871,6 +897,124 @@
 <footer style="text-align:center; padding: 32px 0 48px; color: var(--text-dim); font-size: 0.8em; position: relative; z-index: 1;">
     made by efehamdioglu with love ♥
 </footer>
+
+<!-- ── FORMAL PRINT CV (hidden on screen, shown on print) ── -->
+<div id="print-cv">
+
+    <div class="cv-header">
+        <h1>OSMAN EFE HAMDİOĞLU</h1>
+        <div class="cv-contact">
+            <span>220206023@ostimteknik.edu.tr</span>·
+            <span>+90 507 489 25 89</span>·
+            <span>Ankara, Türkiye</span>·
+            <span>linkedin.com/in/efehamd</span>·
+            <span>github.com/efehamdioglu</span>
+        </div>
+    </div>
+
+    <div class="cv-section">
+        <div class="cv-section-title">Hakkımda</div>
+        <p class="cv-about">
+            Ostim Teknik Üniversitesi Bilgisayar Mühendisliği 4. sınıf öğrencisiyim. Yazılımı bir mühendislik disiplini olduğu kadar bir zanaat olarak da görüyorum; temiz mimari, kullanıcı deneyimi ve tasarım kalitesi benim için eşit derecede önemli. Altı staj sürecinde edindiğim deneyimle siber güvenlikten kurumsal yazılım geliştirmeye, ağ mühendisliğinden SaaS ürün geliştirmeye kadar geniş bir yelpazede çalıştım. Yapay zeka alanındaki gelişmeleri yakından takip ediyor, yeni teknolojileri erken benimsemeye özen gösteriyorum.
+        </p>
+    </div>
+
+    <div class="cv-section">
+        <div class="cv-section-title">İş Deneyimi</div>
+
+        <div class="cv-row">
+            <span class="cv-row-title">ERP Geliştirici Stajyeri</span>
+            <span class="cv-row-date">Şubat 2026 – Devam ediyor</span>
+        </div>
+        <div class="cv-row-sub">BZB İletişim &nbsp;·&nbsp; TTT World, SILA Group — Ankara</div>
+        <ul class="cv-bullets">
+            <li>TTT World'e ait ERP sistem modüllerinin geliştirilmesi ve bakımı</li>
+            <li>Kurumsal kaynak planlama özelliklerinin tam geliştirme yaşam döngüsünde çalışma</li>
+        </ul>
+
+        <div class="cv-row">
+            <span class="cv-row-title">Siber Güvenlik Stajyeri</span>
+            <span class="cv-row-date">Mart – Nisan 2025</span>
+        </div>
+        <div class="cv-row-sub">Akgün Yazılım A.Ş. — Ankara</div>
+        <ul class="cv-bullets">
+            <li>Web uygulamaları ve iç sistemlerde zafiyet analizi ve sızma testleri</li>
+            <li>Bulgular için aksiyon alınabilir raporlama ve çözüm önerileri hazırlanması</li>
+        </ul>
+
+        <div class="cv-row">
+            <span class="cv-row-title">Ağ Güvenliği Mühendisi Stajyeri</span>
+            <span class="cv-row-date">Ocak – Şubat 2025</span>
+        </div>
+        <div class="cv-row-sub">Forte Bilgi İletişim — Ankara</div>
+        <ul class="cv-bullets">
+            <li>Kurumsal ağ cihazlarının ve VLAN segmentasyonunun yapılandırılması</li>
+            <li>Savunma sanayi ortamlarında tehdit göstergelerine yönelik trafik izleme</li>
+        </ul>
+
+        <div class="cv-row">
+            <span class="cv-row-title">Ağ Güvenliği Stajyeri</span>
+            <span class="cv-row-date">Ağustos 2024</span>
+        </div>
+        <div class="cv-row-sub">Forte Bilgi İletişim — Ankara</div>
+        <ul class="cv-bullets">
+            <li>Güvenlik duvarı kuralları, IDS/IPS kurulumu, paket analizi (Wireshark, Nmap)</li>
+        </ul>
+
+        <div class="cv-row">
+            <span class="cv-row-title">Yazılım Mühendisi Stajyeri</span>
+            <span class="cv-row-date">Ocak 2024</span>
+        </div>
+        <div class="cv-row-sub">Forte Bilgi İletişim — Ankara</div>
+        <ul class="cv-bullets">
+            <li>ASP.NET MVC, C# ve SQL Server ile RESTful API ve web özellikleri geliştirilmesi</li>
+            <li>Çevik sprint süreçleri, kod incelemeleri ve işlevler arası ekip çalışması</li>
+        </ul>
+
+        <div class="cv-row">
+            <span class="cv-row-title">Test Otomasyon Stajyeri</span>
+            <span class="cv-row-date">Eylül 2023</span>
+        </div>
+        <div class="cv-row-sub">İnnova Bilişim — Ankara</div>
+        <ul class="cv-bullets">
+            <li>Kurumsal yazılım regresyon testleri için otomatik test süitleri geliştirilmesi</li>
+        </ul>
+    </div>
+
+    <div class="cv-section">
+        <div class="cv-section-title">Eğitim</div>
+        <div class="cv-row">
+            <span class="cv-row-title">Ostim Teknik Üniversitesi</span>
+            <span class="cv-row-date">Eylül 2022 – Haziran 2026 (Beklenen)</span>
+        </div>
+        <div class="cv-row-sub">Bilgisayar Mühendisliği Lisansı — Ankara</div>
+    </div>
+
+    <div class="cv-section">
+        <div class="cv-section-title">Teknik Yetkinlikler</div>
+        <div class="cv-skills-grid">
+            <div class="cv-skill-row"><b>Programlama Dilleri:</b> Python, C / C++, C#, JavaScript, HTML / CSS</div>
+            <div class="cv-skill-row"><b>Çerçeveler:</b> ASP.NET MVC</div>
+            <div class="cv-skill-row"><b>Güvenlik Araçları:</b> Wireshark, Nmap, Metasploit</div>
+            <div class="cv-skill-row"><b>Ağ Teknolojileri:</b> TCP/IP, VLAN, Güvenlik Duvarı, VPN</div>
+            <div class="cv-skill-row"><b>Veritabanları:</b> SQL Server, MS Access</div>
+            <div class="cv-skill-row"><b>Araçlar:</b> Git / GitHub, Linux, VMware</div>
+            <div class="cv-skill-row"><b>Yetkinlikler:</b> SaaS Geliştirme</div>
+        </div>
+    </div>
+
+    <div class="cv-section">
+        <div class="cv-section-title">Yabancı Dil</div>
+        <div class="cv-lang-row"><span>Türkçe</span><span>Anadil</span></div>
+        <div class="cv-lang-row"><span>İngilizce</span><span>C1 İleri Düzey &nbsp;·&nbsp; YDS 76.25</span></div>
+    </div>
+
+    <div class="cv-section">
+        <div class="cv-section-title">İlgi Alanları</div>
+        <p class="cv-about">Yapay Zeka ve Dil Modelleri, SaaS Geliştirme, UI/UX Tasarımı, Saldırgan Güvenlik, CTF Yarışmaları, Bulut Güvenliği, Blokzincir</p>
+    </div>
+
+</div>
 
 <button class="pdf-btn" onclick="window.print()">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
